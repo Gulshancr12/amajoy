@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CategoriesPage.css';
-import AOS from 'aos'; // Ensure AOS is initialized
 
 // Mock images for categories - in a real app, these would come from a CMS or be pre-defined
 const categoryImages = {

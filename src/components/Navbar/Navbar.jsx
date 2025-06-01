@@ -15,7 +15,6 @@ const Navbar = () => {
   const { cartItemCount } = useContext(CartContext); // Use useContext for cartItemCount
   const { isLoggedIn, currentUser, logout, isLoadingAuth } = useAuth();
   
-  const navigate = useNavigate(); // Not strictly used here but good to have if needed
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);

@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './SearchPage.css';
 import { FaSearch, FaTimes } from 'react-icons/fa';
-import { useLocation, useNavigate } from 'react-router-dom'; // To read query params
-import AOS from 'aos';
+import { useLocation, useNavigate } from 'react-router-dom'; 
 
 const SearchPage = () => {
   const [allProducts, setAllProducts] = useState([]); // Store all products for searching

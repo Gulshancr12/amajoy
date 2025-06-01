@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './ProductsPage.css';
-import { FaFilter, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
+import { FaFilter, FaSortAmountDown } from 'react-icons/fa';
 
 const ProductsPage = () => {
   const { categoryName } = useParams();

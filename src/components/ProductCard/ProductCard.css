@@ -186,9 +186,7 @@
 /* src/components/ProductCard/ProductCard.css */
 /* ... existing styles ... */
 
-.overlay-btn.add-to-cart-btn-card { /* Specific styles for the cart button on the card */
-  /* Default styles are inherited from .overlay-btn */
-}
+.overlay-btn.add-to-cart-btn-card {}
 
 .overlay-btn.add-to-cart-btn-card.adding,
 .overlay-btn.add-to-cart-btn-card.added {

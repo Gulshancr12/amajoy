@@ -4,7 +4,6 @@ import { useAuth } from '../../context/AuthContext';
 import './AuthPages.css';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import AOS from 'aos'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');

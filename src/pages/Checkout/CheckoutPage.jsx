@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import './CheckoutPage.css';
-import { FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaCreditCard, FaLock, FaShoppingBag } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaCreditCard, FaLock, FaShoppingBag } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import AOS from 'aos';
 
 import { formatPrice, formatItemTotalPrice } from '../../config/currency'; // Ensure this path is correct
 
