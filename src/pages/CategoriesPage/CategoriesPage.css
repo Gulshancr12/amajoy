@@ -1,0 +1,158 @@
+/* src/pages/CategoriesPage/CategoriesPage.css */
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #ff6b6b;
+  --text-color: #333;
+  --light-gray: #f4f4f8;
+  --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  --border-radius-large: 15px;
+}
+
+.categories-page-container {
+  padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
+  min-height: 70vh;
+  background-color: #f9faff; /* Very light blueish background */
+}
+
+.categories-page-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 25px 20px;
+  /* Optional: Add a subtle background or border if desired */
+}
+
+.categories-page-title {
+  font-size: 2.6rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.categories-page-subtitle {
+  font-size: 1.15rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.category-display-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+  position: relative; /* For absolute positioned elements inside */
+}
+
+.category-display-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(106, 17, 203, 0.15);
+}
+
+.category-card-image-wrapper {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.category-display-card:hover .category-card-image {
+  transform: scale(1.15) rotate(3deg);
+}
+
+.category-card-overlay-bg { /* Subtle gradient overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.category-display-card:hover .category-card-overlay-bg {
+  opacity: 0.5;
+}
+
+.category-card-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff; /* Text color for on top of image */
+  text-align: center;
+  padding: 20px;
+  position: absolute; /* Position name over the image */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2; /* Above overlay */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+.category-display-card:hover .category-card-name {
+  color: var(--accent-color); /* Change color on hover */
+}
+
+
+/* Skeleton for Categories Page */
+.category-card-skeleton {
+  background-color: #fff;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  height: 280px; /* Match approx height of real card */
+  display: flex;
+  flex-direction: column;
+}
+.skeleton-cat-image {
+  height: 200px;
+  background-color: var(--light-gray);
+  animation: pulse-bg 1.5s infinite ease-in-out;
+}
+.skeleton-cat-title {
+  height: 25px;
+  width: 60%;
+  background-color: var(--light-gray);
+  margin: 20px auto 0;
+  border-radius: 4px;
+  animation: pulse-bg 1.5s infinite ease-in-out;
+}
+
+.no-categories-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  padding: 40px 0;
+}
+
+@keyframes pulse-bg { /* Ensure this is defined, or import from global if it exists */
+  0% { background-color: #e0e0e0; }
+  50% { background-color: #f0f0f0; }
+  100% { background-color: #e0e0e0; }
+}
+
+@media (max-width: 768px) {
+  .categories-page-title { font-size: 2.2rem; }
+  .categories-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px;}
+}
+
+@media (max-width: 480px) {
+  .categories-grid { grid-template-columns: 1fr; gap: 20px;}
+  .category-card-image-wrapper { height: 180px; }
+  .category-card-name { font-size: 1.3rem; }
+}

@@ -1,0 +1,224 @@
+/* src/pages/Auth/AuthPages.css */
+:root {
+  /* Ensure these are defined globally, e.g., in index.css or here */
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #ff6b6b;
+  --text-color: #333;
+  --light-gray: #f4f4f8;
+  --medium-gray: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545; /* Bootstrap's danger color */
+  --border-radius-form: 10px;
+  --form-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.auth-page-container {
+  padding: calc(var(--nav-height, 80px) + 50px) 5% 60px;
+  min-height: 80vh; /* Ensure it takes good vertical space */
+  display: flex;
+  align-items: center; /* Vertically center the form wrapper */
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  /* Or a subtle pattern background: */
+  /* background-image: url('data:image/svg+xml,...'); */
+}
+
+.auth-form-wrapper {
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: var(--border-radius-form);
+  box-shadow: var(--form-shadow);
+  width: 100%;
+  max-width: 480px; /* Max width of the form box */
+  text-align: center;
+}
+
+.auth-form-header {
+  margin-bottom: 30px;
+}
+
+.auth-header-icon {
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  display: block; /* Center the icon */
+  margin-left: auto;
+  margin-right: auto;
+  animation: icon-pop-auth 0.5s ease-out forwards;
+}
+@keyframes icon-pop-auth {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+.auth-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.auth-error-message, .auth-success-message {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-align: left;
+}
+.auth-error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.auth-success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.auth-input-field {
+  width: 100%;
+  padding: 15px 15px 15px 50px; /* Padding for icon */
+  border: 1px solid var(--medium-gray);
+  border-radius: 25px; /* Pill shape */
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.auth-input-field:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+.auth-input-field::placeholder {
+  color: #aaa;
+}
+
+.auth-form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+.remember-me-label {
+  display: flex;
+  align-items: center;
+  color: #555;
+  cursor: pointer;
+}
+.remember-me-label input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--primary-color); /* Modern way to style checkbox color */
+}
+.forgot-password-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.forgot-password-link:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+
+.auth-submit-button {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.auth-submit-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.3);
+}
+.auth-submit-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+
+.auth-redirect-link {
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: #555;
+}
+.auth-redirect-link a {
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.auth-redirect-link a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 520px) {
+  .auth-form-wrapper {
+    padding: 30px 25px;
+    margin: 0 15px; /* Add some margin on very small screens */
+  }
+  .auth-title {
+    font-size: 1.8rem;
+  }
+  .auth-input-field {
+    padding: 14px 14px 14px 45px;
+  }
+  .auth-form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+/* Add to src/pages/Auth/AuthPages.css */
+/* ... existing styles ... */
+
+.terms-option {
+  margin-bottom: 20px; /* Ensure space before button */
+  text-align: left; /* Align checkbox and text to the left */
+}
+
+.inline-link { /* For links like "Terms & Conditions" within text */
+  color: var(--primary-color);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.inline-link:hover {
+  color: var(--secondary-color);
+}

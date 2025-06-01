@@ -1,0 +1,287 @@
+/* src/components/Navbar/Navbar.css */
+
+:root {
+  /* Re-declare or import from a global CSS if you centralize variables */
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #ff6b6b;
+  --light-color: #f8f9fa; /* Used for text/icons in navbar */
+  --dark-color: #212529;
+  --text-light: #f8f9fa;
+  --nav-height: 80px;
+  /* Define RGB versions for rgba() if needed for gradients */
+  --primary-color-rgb: 106, 17, 203; 
+  --secondary-color-rgb: 37, 117, 252;
+}
+
+.navbar {
+  /* MODIFICATION: Added a default subtle background gradient */
+  background: linear-gradient(to bottom, rgba(var(--primary-color-rgb), 0.5) 0%, rgba(var(--primary-color-rgb), 0) 100%);
+  /* Alternative solid subtle background: */
+  /* background: rgba(30, 30, 50, 0.15); */
+
+  height: var(--nav-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Ensure 'background' is in transition */
+  border-bottom: 1px solid transparent; /* For subtle separation when scrolled */
+}
+
+.navbar.scrolled {
+  background: linear-gradient(90deg, rgba(var(--primary-color-rgb), 0.97), rgba(var(--secondary-color-rgb), 0.98)); /* Darker, slightly transparent gradient */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--nav-height);
+  width: 100%;
+  max-width: 1400px; /* Max width for content */
+  padding: 0 30px; /* Horizontal padding */
+}
+
+.navbar-logo {
+  color: var(--light-color); /* Text color for logo */
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Shadow for better visibility on varied backgrounds */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-logo:hover {
+  transform: scale(1.05);
+  color: var(--accent-color);
+}
+.navbar.scrolled .navbar-logo {
+  text-shadow: none; /* Remove shadow if background is solid enough */
+}
+
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: var(--nav-height);
+  display: flex; 
+  align-items: center; 
+}
+
+.nav-links {
+  color: var(--light-color); /* Text color for links */
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-out;
+  position: relative; 
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.nav-links::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 2px;
+}
+
+.nav-links:hover,
+.nav-links.active-link { 
+  color: var(--accent-color); 
+}
+.nav-links:hover::after,
+.nav-links.active-link::after {
+  width: 70%; 
+}
+
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon-link {
+  color: var(--light-color); /* Text color for icons */
+  font-size: 1.4rem;
+  margin-left: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative; 
+}
+
+.nav-icon-link:hover {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid white;
+}
+
+.menu-icon {
+  display: none; 
+  color: var(--light-color); /* Text color for mobile menu icon */
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Mobile Menu Styles */
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - var(--nav-height)); 
+    position: absolute;
+    top: var(--nav-height);
+    left: -150%; 
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    background: linear-gradient(180deg, rgba(var(--primary-color-rgb), 0.98), rgba(var(--secondary-color-rgb), 1)); /* Mobile menu background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding-top: 30px;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+    z-index: 1;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto; 
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 1.5rem; 
+    width: 100%;
+    display: table; 
+    font-size: 1.3rem;
+  }
+  .nav-links::after {
+    bottom: 10px; 
+  }
+  .nav-links:hover, .nav-links.active-link {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+  }
+  .nav-links:hover::after, .nav-links.active-link::after {
+    width: 40%;
+  }
+
+
+  .menu-icon {
+    display: block; 
+  }
+
+  .nav-icons {
+     margin-left: auto; 
+  }
+  .navbar.mobile-menu-active .nav-icons {
+      /* display: none; */ /* Optionally hide icons if they are also in the mobile menu or to prevent overlap */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-logo {
+    font-size: 1.6rem; 
+  }
+  .nav-icon-link {
+    font-size: 1.2rem;
+    margin-left: 15px;
+  }
+}
+
+/* Add to src/components/Navbar/Navbar.css */
+/* ... existing styles ... */
+
+.nav-icon-link.auth-link { /* For Login/Signup text links */
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* transition: background-color 0.2s ease, color 0.2s ease; */ /* Already has transition from .nav-icon-link */
+}
+.nav-icon-link.auth-link:hover {
+  /* background-color: rgba(255,255,255,0.15); */ /* Slight bg on hover for text links */
+  color: var(--accent-color); /* Keep consistent hover color */
+}
+.nav-icon-link.auth-link svg {
+  font-size: 1.1em; /* Slightly larger icon within the text link */
+}
+
+.nav-icon-link.user-account-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-username {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: none; /* Hide by default, show on larger screens */
+}
+@media screen and (min-width: 768px) { /* Or your preferred breakpoint */
+  .navbar-username {
+    display: inline;
+  }
+}
+
+
+.logout-button { /* Style it like other nav-icon-links but it's a button */
+  background: transparent;
+  border: none;
+  color: var(--light-color);
+  font-size: 1.4rem; /* Match other icons */
+  margin-left: 15px; /* Consistent spacing */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 0; /* Remove default button padding */
+  display: inline-flex; /* For icon alignment */
+  align-items: center;
+}
+.logout-button:hover {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}

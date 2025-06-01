@@ -1,0 +1,149 @@
+/* src/pages/SearchPage/SearchPage.css */
+.search-page-container {
+  padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
+  min-height: 80vh;
+  background-color: var(--light-gray, #f4f4f8);
+}
+
+.search-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.search-page-header h1 {
+  font-size: 2.4rem;
+  color: var(--primary-color, #6a11cb);
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.search-form {
+  display: flex;
+  gap: 15px;
+  max-width: 700px;
+  margin: 0 auto; /* Center the form */
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+.search-input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1.1rem;
+}
+.search-input-field {
+  width: 100%;
+  padding: 14px 18px 14px 50px; /* Padding for icon */
+  border: 1px solid var(--medium-gray, #e0e0e0);
+  border-radius: 25px;
+  font-size: 1rem;
+  color: var(--text-color, #333);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-input-field:focus {
+  outline: none;
+  border-color: var(--primary-color, #6a11cb);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 106, 17, 203), 0.2);
+}
+.clear-search-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+.clear-search-btn:hover {
+  color: var(--text-color, #333);
+}
+
+.search-submit-btn {
+  background: linear-gradient(90deg, var(--primary-color, #6a11cb), var(--secondary-color, #2575fc));
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.search-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 106, 17, 203), 0.3);
+}
+.search-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.search-results-section {
+  margin-top: 40px;
+}
+.results-count {
+  font-size: 1.3rem;
+  color: var(--text-color, #333);
+  margin-bottom: 25px;
+  text-align: center;
+}
+.results-count strong {
+  color: var(--primary-color, #6a11cb);
+}
+
+.no-results-message, .search-prompt-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--dark-gray, #555);
+  padding: 30px 0;
+}
+.no-results-message strong {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Reusing .products-grid from ProductsPage.css for search results */
+.search-results-grid {
+  /* Any specific overrides for search results grid if needed */
+}
+
+.loading-initial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  gap: 15px;
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
+.search-loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.error-state-search {
+    text-align: center;
+}
+.error-state-search h1 { color: var(--error-color, #dc3545); margin-bottom: 15px; }
+
+
+@media (max-width: 576px) {
+  .search-form {
+    flex-direction: column;
+  }
+  .search-submit-btn {
+    width: 100%;
+  }
+  .search-page-header h1 {
+    font-size: 1.8rem;
+  }
+}

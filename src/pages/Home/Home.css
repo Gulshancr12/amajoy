@@ -1,0 +1,562 @@
+/* src/pages/Home/Home.css */
+
+/* 
+  CSS Variables (:root) and global resets (*, body) have been moved to src/index.css
+  Ensure they are defined there.
+*/
+
+.home-page {
+  width: 100%;
+  overflow-x: hidden; /* Key for preventing horizontal scroll within this component */
+  overflow-y: hidden;
+}
+
+.section-padding {
+  padding: 80px 5%; /* Standard padding for sections */
+}
+
+.bg-light {
+  background-color: var(--light-color);
+}
+.bg-dark {
+  background-color: var(--dark-color);
+}
+.text-light { /* Applies to elements within a .bg-dark section */
+  color: var(--text-light) !important;
+}
+.text-light h2, .text-light h3, .text-light p {
+  color: var(--text-light); /* Ensure child text elements also get light color */
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 60px;
+  font-weight: 700;
+  position: relative;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+.bg-dark .section-title { /* Section title on dark backgrounds */
+  color: var(--light-color);
+}
+.bg-dark .section-title::after {
+   background: linear-gradient(90deg, var(--light-color), var(--accent-color));
+}
+
+
+/* --- Loading & Error States (Component Specific) --- */
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Takes full viewport height */
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+.loading-spinner { /* Animation defined in index.css via @keyframes spin */
+  border: 8px solid var(--light-color);
+  border-top: 8px solid var(--secondary-color);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+.error-message {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  background-color: #ffebee; /* Light red background for error */
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  margin: 20px; /* Add some margin around the error box */
+}
+
+
+/* --- Hero Section --- */
+.hero-section {
+  height: 100vh;
+  min-height: 600px; /* Fallback for smaller viewports or if 100vh is too small */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative; /* For overlay and absolute positioned children */
+  background: url('https://images.unsplash.com/photo-1555529771-835f59fc5efe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+  overflow: hidden; /* Ensure any pseudo elements or content don't break layout */
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(var(--primary-color-rgb), 0.7), rgba(var(--secondary-color-rgb), 0.7));
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  animation: text-flicker 3s linear infinite alternate;
+}
+@keyframes text-flicker { /* Subtle text animation */
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px var(--secondary-color), 0 0 80px var(--secondary-color), 0 0 90px var(--secondary-color), 0 0 100px var(--secondary-color), 0 0 150px var(--secondary-color); }
+  20%, 24%, 55% { text-shadow: none; }
+}
+.hero-content p {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+.cta-button, .cta-button-alt {
+  background: linear-gradient(45deg, var(--accent-color), #ff8a8a);
+  color: white;
+  padding: 15px 35px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cta-button:hover, .cta-button-alt:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+}
+.cta-button-alt { /* Alternative button style */
+  background: var(--light-color);
+  color: var(--primary-color);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.cta-button-alt:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: white;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  opacity: 0.75;
+  margin-top: 10px;
+}
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation: scroll-ani 2s linear infinite;
+}
+@keyframes scroll-ani {
+  0% { opacity: 0; top: 29%; }
+  15% { opacity: 1; top: 50%; }
+  50% { opacity: 0; top: 50%; }
+  100% { opacity: 0; top: 29%; }
+}
+
+
+/* --- Products Section (Featured & New Arrivals) --- */
+.products-section .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+.product-card { /* Reused by renderProductCard */
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden; /* Important for containing child elements */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.product-image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden; /* Ensures image zoom doesn't break card layout */
+  position: relative; /* For quick actions overlay */
+}
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  padding: 10px;
+}
+.product-card:hover .product-image {
+  transform: scale(1.1);
+}
+.product-quick-actions {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.product-card:hover .product-quick-actions {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px); /* Slight lift effect */
+}
+.quick-action-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+.quick-action-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.product-card h3.product-title {
+  font-size: 1.1rem;
+  margin: 15px;
+  color: var(--text-color);
+  height: 45px; /* Approx 2 lines, adjust as needed */
+  overflow: hidden; /* Hides text that overflows this height */
+}
+.product-card p.product-category {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 15px 10px;
+  text-transform: capitalize;
+}
+.product-card p.product-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin: 0 15px 10px;
+}
+.product-rating {
+  margin: 0 15px 15px;
+  font-size: 0.9rem;
+  color: #f39c12;
+}
+.product-rating span {
+  color: #777;
+}
+
+
+/* --- Categories Showcase --- */
+.categories-showcase .category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.category-card {
+  height: 350px;
+  border-radius: var(--border-radius);
+  overflow: hidden; /* Crucial */
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  background-size: cover;
+  background-position: center;
+}
+.category-card:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  color: white;
+  transition: background 0.3s ease;
+}
+.category-card:hover .category-overlay {
+  background: linear-gradient(to top, rgba(var(--primary-color-rgb), 0.9) 0%, rgba(var(--primary-color-rgb), 0.1) 100%);
+}
+.category-card h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+
+/* --- Promo Banner --- */
+.promo-banner {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Important for containing pseudo-elements */
+}
+.promo-banner::before, .promo-banner::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  z-index: 0; /* Behind .promo-content */
+}
+.promo-banner::before {
+  top: -50px; left: -50px;
+  animation: pulse-bubble 5s infinite ease-in-out;
+}
+.promo-banner::after {
+  bottom: -80px; right: -80px;
+  animation: pulse-bubble 7s infinite ease-in-out reverse;
+}
+@keyframes pulse-bubble {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 0.4; }
+}
+.promo-content {
+  position: relative;
+  z-index: 1; /* Above pseudo-elements */
+}
+.promo-banner h2 {
+  font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; letter-spacing: 1px;
+}
+.promo-banner p {
+  font-size: 1.3rem; margin-bottom: 30px;
+}
+.promo-banner .highlight {
+  color: var(--accent-color); font-weight: bold; font-size: 1.5em;
+  display: inline-block; animation: highlight-pop 1.5s infinite;
+}
+@keyframes highlight-pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* --- Why Choose Us Section --- */
+.why-choose-us .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  text-align: center;
+}
+.feature-item {
+  padding: 30px 20px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.feature-item:hover {
+  background-color: rgba(255,255,255,0.05);
+  transform: translateY(-8px);
+}
+.feature-item .icon { /* For emoji icons or <i> tags with icon fonts */
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: inline-block;
+  color: var(--accent-color);
+  animation: icon-bob 2s infinite ease-in-out;
+}
+.feature-item:nth-child(2) .icon { animation-delay: 0.2s; }
+.feature-item:nth-child(3) .icon { animation-delay: 0.4s; }
+.feature-item:nth-child(4) .icon { animation-delay: 0.6s; }
+
+@keyframes icon-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.feature-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.feature-item p { font-size: 0.95rem; opacity: 0.9; }
+
+/* --- Testimonials Section --- */
+.testimonials-section { /* Ensure the section itself doesn't cause overflow */
+  overflow: hidden; /* Can help if children are slightly too wide before slider kicks in */
+}
+.testimonials-slider {
+  display: flex; /* Enables horizontal layout */
+  gap: 30px;
+  overflow-x: auto; /* THIS IS THE INTENDED HORIZONTAL SCROLL FOR TESTIMONIALS */
+  padding-bottom: 20px; /* Space for scrollbar if it appears */
+  /* justify-content: center; /* Only centers if items don't overflow. For scrolling, flex-start is better. */
+  justify-content: flex-start; /* Aligns items to the start, allowing scroll */
+  flex-wrap: nowrap; /* Prevents wrapping to new lines */
+  /* Add some padding to the sides of the container if cards touch edges */
+  padding-left: 5%; /* Or a fixed px value */
+  padding-right: 5%; /* Or a fixed px value */
+  /* To hide scrollbar visually but keep functionality (use with caution, accessibility) */
+  /* scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; /* IE and Edge */
+}
+/* .testimonials-slider::-webkit-scrollbar { /* Webkit browsers */
+  /* display: none;
+/* } */
+
+.testimonial-card {
+  flex: 0 0 320px; /* Don't shrink, don't grow, base width 320px */
+  background: var(--light-color);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.testimonial-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 15px rgba(var(--primary-color-rgb), 0.5);
+}
+.testimonial-text { font-style: italic; margin-bottom: 15px; color: #555; font-size: 1.05rem; }
+.testimonial-author { font-weight: bold; color: var(--primary-color); }
+
+/* --- Newsletter Section --- */
+.newsletter-section {
+  /* Ensure the gradient colors are defined in :root in index.css or here */
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+  color: white;
+  text-align: center;
+}
+.bg-gradient { /* Reusable class for this specific gradient if used elsewhere */
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+}
+.newsletter-content h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.newsletter-content p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 10px;
+}
+.newsletter-form input[type="email"] {
+  flex-grow: 1;
+  padding: 15px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+.newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,0.7); }
+.newsletter-form input[type="email"]:focus {
+  border-color: white;
+  background: rgba(255,255,255,0.3);
+}
+/* .cta-button is already defined for newsletter submit button */
+
+
+/* --- Icon Placeholders (Emoji based) --- */
+.icon { 
+  display: inline-block;
+  margin-right: 5px; /* Or adjust as needed */
+}
+
+/* --- Responsive Design (Media Queries) --- */
+/* Keep your existing media queries, but ensure they don't introduce overflow bugs */
+/* Example: if a grid changes to 1 column, ensure items don't exceed 100% width */
+
+@media (max-width: 1024px) {
+  .section-title { font-size: 2.4rem; }
+  .hero-content h1 { font-size: 3rem; }
+  .hero-content p { font-size: 1.2rem; }
+  .promo-banner h2 { font-size: 2.4rem; }
+  .products-section .product-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .section-padding { padding: 60px 3%; } /* Slightly reduce padding */
+  .section-title { font-size: 2rem; margin-bottom: 40px; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .hero-content p { font-size: 1.1rem; }
+  .cta-button, .cta-button-alt { padding: 12px 25px; font-size: 1rem; }
+  
+  .products-section .product-grid,
+  .categories-showcase .category-grid,
+  .why-choose-us .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Allow more flexible fitting */
+    /* Or explicitly set to 2 columns if preferred: grid-template-columns: 1fr 1fr; */
+    gap: 20px;
+  }
+  .product-card h3.product-title { font-size: 1rem; height: auto; min-height: 40px; }
+  .promo-banner h2 { font-size: 2rem; }
+  .promo-banner p { font-size: 1.1rem; }
+  
+  .testimonials-slider { /* Ensure side padding on mobile is sufficient */
+    padding-left: 3%; 
+    padding-right: 3%;
+  }
+  .testimonial-card { flex: 0 0 280px; }
+  
+  .newsletter-form { flex-direction: column; gap: 15px; }
+  .newsletter-form input[type="email"], .newsletter-form .cta-button { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .section-padding { padding: 50px 2%; }
+  .section-title { font-size: 1.8rem; }
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+  
+  .products-section .product-grid,
+  .categories-showcase .category-grid,
+  .why-choose-us .features-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+  .testimonial-card { flex: 0 0 90%; /* Make testimonial cards wider on small screens */ } 
+  .category-card { height: 280px; }
+  .promo-banner h2 { font-size: 1.8rem; }
+  .promo-banner p { font-size: 1rem; }
+  .newsletter-content h2 { font-size: 2rem; }
+}

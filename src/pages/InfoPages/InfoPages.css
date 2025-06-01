@@ -1,0 +1,288 @@
+/* src/pages/InfoPages/InfoPages.css */
+/* Ensure CSS variables are available from index.css */
+
+.info-page-container {
+  padding-top: var(--nav-height, 80px); /* Account for fixed navbar */
+  padding-bottom: 60px;
+  background-color: #fff; /* Default light background */
+}
+
+.info-page-header {
+  padding: 80px 5%;
+  text-align: center;
+  color: white;
+  position: relative; /* For overlay */
+  background-size: cover;
+  background-position: center;
+  min-height: 350px; /* Ensure header has some height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--primary-color-rgb), 0.6); /* Use primary color with opacity */
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.info-page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  position: relative; z-index: 2;
+}
+.info-page-header p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 300;
+  position: relative; z-index: 2;
+}
+
+/* Specific background for About page header */
+.about-header-bg {
+  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); /* Example team/office image */
+}
+/* Specific background for Contact page header */
+.contact-header-bg {
+  background-image: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); /* Example contact/communication image */
+}
+
+
+.info-section {
+  padding: 60px 8%; /* More horizontal padding for content sections */
+  max-width: 1100px; /* Max width for content readability */
+  margin: 0 auto;
+}
+.info-section h2 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.info-section-icon {
+  font-size: 1em; /* Relative to h2 size */
+  /* color: var(--secondary-color); */ /* Or inherit */
+}
+.info-section p {
+  font-size: 1.05rem;
+  color: var(--dark-gray, #555);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.info-section p:last-child {
+  margin-bottom: 0;
+}
+
+.bg-pattern-light {
+  background-color: var(--light-gray, #f4f4f8);
+  /* Add a subtle background pattern if desired */
+  /* background-image: url('/path/to/light-pattern.png'); */
+}
+.bg-pattern-dark {
+  background-color: var(--dark-color, #212529);
+  color: var(--text-light, #f8f9fa);
+}
+.bg-pattern-dark h2 { color: var(--light-color); }
+.bg-pattern-dark p { color: #ccc; }
+
+
+/* About Page Specifics */
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+.mission-item, .vision-item {
+  padding: 25px;
+  background-color: #fff;
+  border-radius: var(--border-radius-medium, 8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.mission-item h3, .vision-item h3 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+.value-card {
+  background-color: var(--light-gray, #f4f4f8);
+  padding: 25px;
+  border-radius: var(--border-radius-medium, 8px);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.1);
+}
+.value-card h4 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+
+/* Responsive for Info Pages */
+@media (max-width: 992px) {
+  .info-page-header h1 { font-size: 2.5rem; }
+  .info-page-header p { font-size: 1.1rem; }
+}
+@media (max-width: 768px) {
+  .info-page-header { padding: 60px 5%; min-height: 300px; }
+  .info-section { padding: 50px 5%; }
+  .info-section h2 { font-size: 1.8rem; }
+  .mission-vision-grid { grid-template-columns: 1fr; }
+}
+
+/* Add to src/pages/InfoPages/InfoPages.css */
+/* ... existing styles from AboutPage ... */
+
+/* Contact Page Specifics */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+.contact-info-item {
+  padding: 25px;
+  background-color: #fff; /* Or var(--light-gray) if section bg is white */
+  border-radius: var(--border-radius-medium, 8px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.contact-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+.contact-info-item h3 {
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+.contact-info-item p a {
+  color: var(--dark-gray, #555);
+  text-decoration: none;
+}
+.contact-info-item p a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.contact-form {
+  max-width: 750px;
+  margin: 30px auto 0;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: var(--border-radius-medium, 8px);
+  box-shadow: var(--card-shadow);
+}
+.contact-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.form-group-contact {
+  margin-bottom: 20px;
+}
+.form-group-contact label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-gray, #555);
+  margin-bottom: 8px;
+}
+.form-group-contact input[type="text"],
+.form-group-contact input[type="email"],
+.form-group-contact textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--medium-gray, #e0e0e0);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--text-color, #333);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit; /* Ensure textarea uses same font */
+}
+.form-group-contact textarea {
+  resize: vertical; /* Allow vertical resize, not horizontal */
+  min-height: 120px;
+}
+.form-group-contact input:focus,
+.form-group-contact textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.15);
+}
+.error-text-contact {
+  display: block;
+  color: var(--error-color, #dc3545); /* Ensure --error-color is defined */
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+.contact-submit-btn {
+  display: block;
+  width: auto; /* Or '100%' for full-width */
+  padding: 12px 35px;
+  margin: 15px auto 0; /* Center if auto width */
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.contact-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.25);
+}
+.contact-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.map-section .map-placeholder {
+    margin-top: 20px;
+    height: 400px;
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-gray);
+    border: 1px dashed var(--medium-gray);
+}
+
+@media (max-width: 768px) {
+  .contact-form .form-row {
+    grid-template-columns: 1fr; /* Stack name and email fields */
+  }
+}

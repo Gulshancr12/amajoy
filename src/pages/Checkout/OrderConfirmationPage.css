@@ -1,0 +1,142 @@
+/* src/pages/Checkout/OrderConfirmationPage.css */
+.order-confirmation-container {
+  padding: calc(var(--nav-height, 80px) + 50px) 5% 60px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--light-gray) 0%, #eef2f7 100%);
+}
+
+.confirmation-box {
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+  max-width: 650px;
+  width: 100%;
+}
+
+.confirmation-icon {
+  font-size: 5rem;
+  color: var(--success-color, #28a745); /* Define --success-color in index.css if not already */
+  margin-bottom: 25px;
+}
+
+.confirmation-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.confirmation-subtitle {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  margin-bottom: 10px;
+}
+.order-id {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.confirmation-message {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.confirmation-summary {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px dashed var(--medium-gray);
+  text-align: left;
+}
+.confirmation-summary h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+.confirmation-summary ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+.confirmation-summary li {
+  font-size: 0.95rem;
+  color: var(--dark-gray);
+  margin-bottom: 8px;
+}
+.summary-total-confirm {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.confirmation-actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column; /* Stack buttons on mobile */
+  align-items: center;
+  gap: 15px;
+}
+
+.confirmation-cta {
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  min-width: 200px; /* Ensure buttons have decent width */
+  justify-content: center;
+}
+.confirmation-cta.shop-more {
+  background-color: var(--primary-color);
+  color: white;
+}
+.confirmation-cta.shop-more:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+.confirmation-cta.view-orders {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+.confirmation-cta.view-orders:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Error state for confirmation page */
+.error-state-confirmation .confirmation-title {
+  color: var(--error-color, #dc3545); /* Define --error-color in index.css */
+}
+
+@media (min-width: 576px) {
+  .confirmation-actions {
+    flex-direction: row; /* Side-by-side buttons on larger screens */
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-box {
+    padding: 30px 25px;
+  }
+  .confirmation-title {
+    font-size: 1.8rem;
+  }
+  .confirmation-icon {
+    font-size: 4rem;
+  }
+}

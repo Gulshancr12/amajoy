@@ -1,13 +1,73 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* src/index.css */
+
+/* --- Global Variables --- */
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #ff6b6b;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --text-color: #333;
+  --text-light: #f8f9fa;
+  --border-radius: 8px;
+  --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --font-family-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --primary-color-rgb: 106, 17, 203; 
+  --secondary-color-rgb: 37, 117, 252;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* --- Base HTML & Body Styles --- */
+html {
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scroll for the entire page */
+  /* scroll-behavior: smooth; */ /* Optional - for smooth anchor scrolling */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-sans-serif);
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: #fff;
+  min-height: 100vh; /* Ensure body is at least full viewport height to allow content to push it */
+  /* overflow-y: auto; */ /* Usually not needed here; browser default handles it if content overflows <html> */
+  /* overflow-x: hidden; */ /* Redundant if html has it, but can be a safeguard */
+  
+  /* For sticky footer pattern - this makes body a flex container */
+  display: flex;       
+  flex-direction: column; 
+}
+
+/* --- Global Link Styles --- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- Global Container for Page Content --- */
+/* This div wraps <Routes> in App.js */
+.page-content-wrapper {
+  flex-grow: 1; /* This is key for the sticky footer pattern. It makes this div take up
+                   available vertical space between Navbar and Footer. Content inside this
+                   div will determine its actual height and thus make the body scroll if needed. */
+  /* No overflow properties needed here generally, let its content flow. */
+}
+
+/* --- Keyframes --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-bg {
+  0% { background-color: #e0e0e0; }
+  50% { background-color: #f0f0f0; }
+  100% { background-color: #e0e0e0; }
 }

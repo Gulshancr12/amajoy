@@ -1,0 +1,210 @@
+/* src/pages/AccountPage/AccountPage.css */
+:root {
+  /* Ensure these variables are available (e.g., from index.css) */
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --accent-color: #ff6b6b;
+  --text-color: #333;
+  --light-gray: #f4f4f8;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #555;
+  --border-radius-medium: 8px;
+  --card-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+
+.account-page-container {
+  padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
+  min-height: 80vh;
+  background-color: #f9faff; /* Slightly different, very light background */
+}
+
+.account-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.account-page-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.account-page-header p {
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
+
+.account-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr; /* Fixed sidebar, flexible content */
+  gap: 35px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--card-shadow);
+}
+
+/* --- Account Sidebar --- */
+.account-sidebar {
+  /* background-color: #fff; */ /* Moved to .account-layout for unified bg */
+  /* padding: 25px; */
+  /* border-radius: var(--border-radius-medium); */
+  /* box-shadow: var(--card-shadow); */
+  border-right: 1px solid var(--medium-gray); /* Separator line */
+  padding-right: 30px;
+}
+
+.user-profile-summary {
+  text-align: center;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px dashed var(--medium-gray);
+}
+.profile-avatar-icon {
+  font-size: 5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+.user-profile-summary h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 5px;
+  word-break: break-all; /* For long names/emails */
+}
+.user-profile-summary p {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  word-break: break-all;
+}
+
+.account-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.account-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  color: var(--dark-gray);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+  border: none; /* For button reset */
+  background: none; /* For button reset */
+  cursor: pointer; /* For button */
+  width: 100%; /* For button */
+  text-align: left; /* For button */
+  font-size: 1rem; /* For button */
+}
+.account-nav-link svg {
+  font-size: 1.2em;
+  min-width: 20px; /* Ensure icon space */
+  color: var(--secondary-color);
+  transition: color 0.25s ease;
+}
+.account-nav-link:hover,
+.account-nav-link.active {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  color: var(--primary-color);
+  padding-left: 25px; /* Indent on hover/active */
+}
+.account-nav-link:hover svg,
+.account-nav-link.active svg {
+  color: var(--primary-color);
+}
+.account-nav-link.logout {
+  margin-top: 20px; /* Space before logout */
+  color: var(--accent-color);
+}
+.account-nav-link.logout svg {
+  color: var(--accent-color);
+}
+.account-nav-link.logout:hover {
+  background-color: rgba(var(--accent-color-rgb), 0.1); /* Use accent color RGB */
+  color: darken(var(--accent-color), 10%);
+}
+.account-nav-link.logout:hover svg {
+  color: darken(var(--accent-color), 10%);
+}
+
+
+/* --- Account Main Content --- */
+.account-main-content {
+  /* background-color: #fff; */ /* Moved to .account-layout */
+  /* padding: 30px; */
+  /* border-radius: var(--border-radius-medium); */
+  /* box-shadow: var(--card-shadow); */
+}
+.account-section-content {
+  /* Styles for the actual content of each section */
+}
+.welcome-section h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.welcome-section p {
+  font-size: 1.05rem;
+  color: var(--dark-gray);
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+.edit-profile-btn-main {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.edit-profile-btn-main:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .account-layout {
+    grid-template-columns: 1fr; /* Stack sidebar and content */
+  }
+  .account-sidebar {
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--medium-gray); /* Separator below sidebar */
+    padding-bottom: 30px;
+  }
+  .account-nav {
+    flex-direction: row; /* Horizontal links on smaller screens */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the links */
+  }
+  .account-nav-link {
+    width: auto; /* Allow links to size naturally */
+  }
+}
+
+@media (max-width: 576px) {
+  .account-page-header h1 { font-size: 2rem; }
+  .account-layout { padding: 20px; }
+  .account-nav {
+    gap: 5px;
+  }
+  .account-nav-link {
+    padding: 10px 12px;
+    font-size: 0.9rem; /* Slightly smaller text */
+  }
+  .profile-avatar-icon { font-size: 4rem; }
+}
