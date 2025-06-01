@@ -1,13 +1,5 @@
 /* src/pages/CategoriesPage/CategoriesPage.css */
-:root {
-  --primary-color: #6a11cb;
-  --secondary-color: #2575fc;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --light-gray: #f4f4f8;
-  --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  --border-radius-large: 15px;
-}
+/* CSS Variables (:root) and @keyframes pulse-bg should be defined globally in src/index.css */
 
 .categories-page-container {
   padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
@@ -19,7 +11,6 @@
   text-align: center;
   margin-bottom: 50px;
   padding: 25px 20px;
-  /* Optional: Add a subtle background or border if desired */
 }
 
 .categories-page-title {
@@ -31,7 +22,7 @@
 
 .categories-page-subtitle {
   font-size: 1.15rem;
-  color: #555;
+  color: #555; /* Using direct hex, or var(--dark-gray) if defined globally */
   max-width: 700px;
   margin: 0 auto;
 }
@@ -47,16 +38,17 @@
   text-decoration: none;
   color: inherit;
   background-color: #fff;
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-large); /* Ensure --border-radius-large is in index.css :root */
+  box-shadow: var(--card-shadow); /* Ensure --card-shadow is in index.css :root */
   overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
-  position: relative; /* For absolute positioned elements inside */
+  position: relative; 
 }
 
 .category-display-card:hover {
   transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 15px 35px rgba(106, 17, 203, 0.15);
+  /* Using hardcoded rgba based on --primary-color if --primary-color-rgb is not consistently used */
+  box-shadow: 0 15px 35px rgba(106, 17, 203, 0.15); 
 }
 
 .category-card-image-wrapper {
@@ -75,7 +67,7 @@
   transform: scale(1.15) rotate(3deg);
 }
 
-.category-card-overlay-bg { /* Subtle gradient overlay */
+.category-card-overlay-bg { 
   position: absolute;
   top: 0;
   left: 0;
@@ -92,59 +84,55 @@
 .category-card-name {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #fff; /* Text color for on top of image */
+  color: #fff; 
   text-align: center;
   padding: 20px;
-  position: absolute; /* Position name over the image */
+  position: absolute; 
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 2; /* Above overlay */
+  z-index: 2; 
   text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
   text-transform: capitalize;
   transition: color 0.3s ease;
 }
 .category-display-card:hover .category-card-name {
-  color: var(--accent-color); /* Change color on hover */
+  color: var(--accent-color); 
 }
 
 
 /* Skeleton for Categories Page */
 .category-card-skeleton {
   background-color: #fff;
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-large); /* Ensure --border-radius-large is in index.css :root */
+  box-shadow: var(--card-shadow); /* Ensure --card-shadow is in index.css :root */
   overflow: hidden;
-  height: 280px; /* Match approx height of real card */
+  height: 280px; 
   display: flex;
   flex-direction: column;
 }
 .skeleton-cat-image {
   height: 200px;
-  background-color: var(--light-gray);
-  animation: pulse-bg 1.5s infinite ease-in-out;
+  background-color: var(--light-gray); /* Ensure --light-gray is in index.css :root */
+  animation: pulse-bg 1.5s infinite ease-in-out; /* pulse-bg keyframes should be in index.css */
 }
 .skeleton-cat-title {
   height: 25px;
   width: 60%;
-  background-color: var(--light-gray);
+  background-color: var(--light-gray); /* Ensure --light-gray is in index.css :root */
   margin: 20px auto 0;
   border-radius: 4px;
-  animation: pulse-bg 1.5s infinite ease-in-out;
+  animation: pulse-bg 1.5s infinite ease-in-out; /* pulse-bg keyframes should be in index.css */
 }
 
 .no-categories-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #777;
+  color: #777; /* Or var(--dark-gray) if defined globally */
   padding: 40px 0;
 }
 
-@keyframes pulse-bg { /* Ensure this is defined, or import from global if it exists */
-  0% { background-color: #e0e0e0; }
-  50% { background-color: #f0f0f0; }
-  100% { background-color: #e0e0e0; }
-}
+/* @keyframes pulse-bg is assumed to be in index.css */
 
 @media (max-width: 768px) {
   .categories-page-title { font-size: 2.2rem; }

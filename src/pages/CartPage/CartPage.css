@@ -1,20 +1,10 @@
 /* src/pages/CartPage/CartPage.css */
-:root {
-  --primary-color: #6a11cb;
-  --secondary-color: #2575fc;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --light-gray: #f4f4f8;
-  --medium-gray: #e0e0e0;
-  --dark-gray: #555;
-  --border-radius-medium: 8px;
-  --card-shadow: 0 5px 15px rgba(0,0,0,0.07);
-}
+/* CSS Variables (:root) should be defined globally in src/index.css */
 
 .cart-page-container {
   padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
   min-height: 70vh;
-  background-color: var(--light-gray); /* Light background for the page */
+  background-color: var(--light-gray); 
 }
 
 /* --- Empty Cart State --- */
@@ -36,7 +26,7 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
-.empty-cart .cart-title { /* Reuse cart-title style */
+.empty-cart .cart-title { 
   color: var(--text-color);
   margin-bottom: 15px;
 }
@@ -59,7 +49,7 @@
 }
 .empty-cart-cta:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+  box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3); /* Assuming --primary-color-rgb is defined */
 }
 
 /* --- Cart Header --- */
@@ -98,7 +88,7 @@
 /* --- Cart Layout (Items & Summary) --- */
 .cart-layout {
   display: grid;
-  grid-template-columns: 2.5fr 1fr; /* Items take more space */
+  grid-template-columns: 2.5fr 1fr; 
   gap: 40px;
 }
 
@@ -114,13 +104,13 @@
   box-shadow: var(--card-shadow);
   padding: 20px;
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto; /* Image, Details, Qty, Subtotal, Remove */
+  grid-template-columns: auto 1fr auto auto auto; 
   align-items: center;
   gap: 20px;
   transition: transform 0.2s ease-out;
 }
 .cart-item-card:hover {
-  transform: scale(1.015); /* Subtle grow effect */
+  transform: scale(1.015); 
 }
 
 .cart-item-image-link { display: block; }
@@ -204,7 +194,8 @@
   transition: color 0.2s ease, transform 0.2s ease;
 }
 .cart-item-remove-btn:hover {
-  color: darken(var(--accent-color), 10%);
+  /* color: darken(var(--accent-color), 10%); /* Replaced SASS darken */
+  color: #e64545; /* Example: Manually darkened from #ff6b6b */
   transform: scale(1.1);
 }
 
@@ -214,9 +205,9 @@
   border-radius: var(--border-radius-medium);
   box-shadow: var(--card-shadow);
   padding: 30px;
-  height: fit-content; /* So it doesn't stretch unnecessarily */
-  position: sticky; /* Make summary stick on scroll */
-  top: calc(var(--nav-height, 80px) + 20px); /* Adjust based on navbar height */
+  height: fit-content; 
+  position: sticky; 
+  top: calc(var(--nav-height, 80px) + 20px); 
 }
 .summary-title {
   font-size: 1.6rem;
@@ -261,7 +252,8 @@
   transition: background-color 0.2s ease;
 }
 .summary-item.promo-code button:hover {
-  background-color: darken(var(--secondary-color), 10%);
+  /* background-color: darken(var(--secondary-color), 10%); /* Replaced SASS darken */
+  background-color: #1068f0; /* Example: Manually darkened from #2575fc */
 }
 
 .summary-total {
@@ -291,7 +283,7 @@
 }
 .checkout-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+  box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3); /* Assuming --primary-color-rgb is defined */
 }
 .continue-shopping-link {
   display: block;
@@ -314,26 +306,26 @@
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
   .cart-layout {
-    grid-template-columns: 1fr; /* Stack items and summary */
+    grid-template-columns: 1fr; 
   }
   .cart-summary {
-    position: static; /* Remove sticky on smaller screens if it causes issues */
+    position: static; 
     margin-top: 30px;
   }
 }
 @media (max-width: 768px) {
   .cart-title { font-size: 1.8rem; }
   .cart-item-card {
-    grid-template-columns: auto 1fr; /* Image, then rest below */
+    grid-template-columns: auto 1fr; 
     grid-template-areas:
       "image details"
       "image quantity"
       "image subtotal"
       "image remove";
-    align-items: flex-start; /* Align items to start for better vertical layout */
-    row-gap: 10px; /* Add gap between rows */
+    align-items: flex-start; 
+    row-gap: 10px; 
   }
-  .cart-item-image { grid-area: image; align-self: center; } /* Center image vertically */
+  .cart-item-image { grid-area: image; align-self: center; } 
   .cart-item-details { grid-area: details; }
   .cart-item-quantity { grid-area: quantity; justify-self: start; }
   .cart-item-subtotal { grid-area: subtotal; text-align: left; margin-top: 5px; }
@@ -342,7 +334,7 @@
 @media (max-width: 480px) {
   .cart-header { flex-direction: column; gap: 15px; align-items: flex-start; }
   .cart-item-card {
-    grid-template-columns: 1fr; /* Single column full width */
+    grid-template-columns: 1fr; 
     grid-template-areas:
       "image"
       "details"
@@ -351,8 +343,8 @@
       "remove";
     padding: 15px;
   }
-  .cart-item-image { width: 120px; height: 120px; margin: 0 auto 10px; } /* Center image */
+  .cart-item-image { width: 120px; height: 120px; margin: 0 auto 10px; } 
   .cart-item-quantity, .cart-item-remove-btn { justify-self: stretch; text-align: center; }
   .cart-item-subtotal { text-align: center; }
-  .cart-item-quantity button { padding: 8px 15px; } /* Make +/- buttons a bit bigger */
+  .cart-item-quantity button { padding: 8px 15px; } 
 }

@@ -1,18 +1,11 @@
 /* src/components/ProductCard/ProductCard.css */
-:root {
-  --primary-color: #6a11cb;
-  --secondary-color: #2575fc;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --border-radius-card: 12px;
-  --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  --card-hover-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-}
+/* CSS Variables (:root) should be defined globally in src/index.css */
+/* @keyframes mini-spin can be global or local if only used here */
 
 .product-card-item {
   background: #fff;
-  border-radius: var(--border-radius-card);
-  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-card); /* Ensure --border-radius-card is in index.css :root */
+  box-shadow: var(--card-shadow); /* Ensure --card-shadow is in index.css :root */
   overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
@@ -22,31 +15,31 @@
 
 .product-card-item:hover {
   transform: translateY(-8px);
-  box-shadow: var(--card-hover-shadow);
+  box-shadow: var(--card-hover-shadow); /* Ensure --card-hover-shadow is in index.css :root */
 }
 
 .product-card-link {
   text-decoration: none;
   color: inherit;
-  display: block; /* Make the link take up the image space */
+  display: block; 
 }
 
 .product-image-wrapper {
   width: 100%;
-  height: 280px; /* Consistent height for product images */
+  height: 280px; 
   overflow: hidden;
-  position: relative; /* For overlay and badges */
-  background-color: #f9f9f9; /* Light background for images */
+  position: relative; 
+  background-color: #f9f9f9; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .product-image-main {
-  width: auto; /* Let image scale naturally */
-  max-width: 80%; /* Don't let image take full width to have some padding */
-  height: auto; /* Let image scale naturally */
-  max-height: 80%; /* Don't let image take full height */
+  width: auto; 
+  max-width: 80%; 
+  height: auto; 
+  max-height: 80%; 
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -112,35 +105,34 @@
   z-index: 1;
 }
 .product-badge.new { background-color: var(--secondary-color); }
-.product-badge.sale { background-color: #28a745; } /* Green for sale */
+.product-badge.sale { background-color: var(--success-color, #28a745); } /* Assuming --success-color is global */
 
 
 .product-info {
   padding: 20px;
   text-align: left;
-  flex-grow: 1; /* Allows this section to take remaining space */
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Pushes price/rating to bottom */
+  justify-content: space-between; 
 }
 
 .product-category-name {
   font-size: 0.8rem;
-  color: #888;
+  color: #888; /* Or var(--dark-gray) if defined globally */
   margin-bottom: 5px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .product-name {
-  font-size: 1.05rem; /* Slightly larger */
+  font-size: 1.05rem; 
   font-weight: 600;
   color: var(--text-color);
   margin-bottom: 10px;
   line-height: 1.4;
-  height: 44px; /* Approx 2 lines */
+  height: 44px; 
   overflow: hidden;
-  /* text-overflow: ellipsis; - not reliable for multi-line */
 }
 .product-title-link {
   text-decoration: none;
@@ -155,7 +147,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; /* Pushes this block to the bottom of .product-info */
+  margin-top: auto; 
 }
 
 .product-price-tag {
@@ -167,7 +159,7 @@
 .product-rating-stars {
   display: flex;
   align-items: center;
-  color: #f8c102; /* Gold for stars */
+  color: #f8c102; /* Gold for stars, or var(--star-filled-color) if defined globally */
 }
 
 .star-icon {
@@ -175,50 +167,50 @@
   font-size: 0.9rem;
 }
 
-.star-icon.empty { color: #e0e0e0; }
-*/
+/* This was the potentially problematic line. Ensuring it's a valid comment or removed. */
+/* .star-icon.empty { color: #e0e0e0; } */ /* Correctly commented out */
+
 .rating-count {
   font-size: 0.8rem;
-  color: #777;
+  color: #777; /* Or var(--dark-gray) */
   margin-left: 5px;
 }
 
-/* src/components/ProductCard/ProductCard.css */
-/* ... existing styles ... */
-
-.overlay-btn.add-to-cart-btn-card {}
+.overlay-btn.add-to-cart-btn-card { 
+  /* Specific styles can go here if needed, otherwise inherits from .overlay-btn */
+}
 
 .overlay-btn.add-to-cart-btn-card.adding,
 .overlay-btn.add-to-cart-btn-card.added {
-  /* Styles when button is in adding or added state */
   cursor: default;
 }
 
 .overlay-btn.add-to-cart-btn-card.adding {
-  background-color: var(--secondary-color); /* Indicate processing */
+  background-color: var(--secondary-color); 
   color: white;
 }
 
 .overlay-btn.add-to-cart-btn-card.added {
-  background-color: var(--success-color, #28a745); /* Green for success */
+  background-color: var(--success-color, #28a745); /* Assuming --success-color is global */
   color: white;
 }
-.overlay-btn.add-to-cart-btn-card.added svg { /* Checkmark icon style */
-  font-size: 1.4em; /* Make checkmark slightly larger */
+.overlay-btn.add-to-cart-btn-card.added svg { 
+  font-size: 1.4em; 
 }
 
 
 /* Mini Spinner for Add to Cart Button */
 .mini-spinner {
-  width: 20px; /* Adjust size as needed */
+  width: 20px; 
   height: 20px;
   border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff; /* Spinner color */
+  border-top-color: #fff; 
   border-radius: 50%;
-  animation: mini-spin 0.8s linear infinite;
-  display: inline-block; /* Or flex align in button */
+  animation: mini-spin 0.8s linear infinite; /* mini-spin keyframes should be in index.css or here if only local */
+  display: inline-block; 
 }
 
+/* If mini-spin is only used here, define it here. Otherwise, define globally in index.css and remove from here. */
 @keyframes mini-spin {
   to {
     transform: rotate(360deg);
@@ -228,8 +220,8 @@
 /* Optional: Direct Add to Cart Button (not in overlay) */
 .direct-add-to-cart-btn {
   display: block;
-  width: calc(100% - 40px); /* Full width minus padding */
-  margin: 15px 20px 20px; /* Bottom margin for spacing */
+  width: calc(100% - 40px); 
+  margin: 15px 20px 20px; 
   padding: 10px 15px;
   background-color: var(--primary-color);
   color: white;
@@ -250,7 +242,7 @@
   cursor: wait;
 }
 .direct-add-to-cart-btn.added {
-  background-color: var(--success-color, #28a745);
+  background-color: var(--success-color, #28a745); /* Assuming --success-color is global */
   opacity: 1;
   cursor: default;
 }

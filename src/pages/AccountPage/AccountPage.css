@@ -1,16 +1,5 @@
 /* src/pages/AccountPage/AccountPage.css */
-:root {
-  /* Ensure these variables are available (e.g., from index.css) */
-  --primary-color: #6a11cb;
-  --secondary-color: #2575fc;
-  --accent-color: #ff6b6b;
-  --text-color: #333;
-  --light-gray: #f4f4f8;
-  --medium-gray: #e0e0e0;
-  --dark-gray: #555;
-  --border-radius-medium: 8px;
-  --card-shadow: 0 5px 15px rgba(0,0,0,0.07);
-}
+/* CSS Variables (:root) should be defined globally in src/index.css */
 
 .account-page-container {
   padding: calc(var(--nav-height, 80px) + 40px) 5% 60px;
@@ -45,10 +34,6 @@
 
 /* --- Account Sidebar --- */
 .account-sidebar {
-  /* background-color: #fff; */ /* Moved to .account-layout for unified bg */
-  /* padding: 25px; */
-  /* border-radius: var(--border-radius-medium); */
-  /* box-shadow: var(--card-shadow); */
   border-right: 1px solid var(--medium-gray); /* Separator line */
   padding-right: 30px;
 }
@@ -92,38 +77,38 @@
   border-radius: 6px;
   font-weight: 500;
   transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
-  border: none; /* For button reset */
-  background: none; /* For button reset */
-  cursor: pointer; /* For button */
-  width: 100%; /* For button */
-  text-align: left; /* For button */
-  font-size: 1rem; /* For button */
+  border: none; 
+  background: none; 
+  cursor: pointer; 
+  width: 100%; 
+  text-align: left; 
+  font-size: 1rem; 
 }
 .account-nav-link svg {
   font-size: 1.2em;
-  min-width: 20px; /* Ensure icon space */
+  min-width: 20px; 
   color: var(--secondary-color);
   transition: color 0.25s ease;
 }
 .account-nav-link:hover,
 .account-nav-link.active {
-  background-color: rgba(var(--primary-color-rgb), 0.1);
+  background-color: rgba(var(--primary-color-rgb), 0.1); /* Make sure --primary-color-rgb is in index.css */
   color: var(--primary-color);
-  padding-left: 25px; /* Indent on hover/active */
+  padding-left: 25px; 
 }
 .account-nav-link:hover svg,
 .account-nav-link.active svg {
   color: var(--primary-color);
 }
 .account-nav-link.logout {
-  margin-top: 20px; /* Space before logout */
+  margin-top: 20px; 
   color: var(--accent-color);
 }
 .account-nav-link.logout svg {
   color: var(--accent-color);
 }
 .account-nav-link.logout:hover {
-  background-color: rgba(var(--accent-color-rgb), 0.1); /* Use accent color RGB */
+  background-color: rgba(var(--accent-color-rgb), 0.1); /* Make sure --accent-color-rgb is in index.css */
   color: darken(var(--accent-color), 10%);
 }
 .account-nav-link.logout:hover svg {
@@ -133,27 +118,24 @@
 
 /* --- Account Main Content --- */
 .account-main-content {
-  /* background-color: #fff; */ /* Moved to .account-layout */
-  /* padding: 30px; */
-  /* border-radius: var(--border-radius-medium); */
-  /* box-shadow: var(--card-shadow); */
+  /* Styles for this container if needed, but often it's just a placeholder for <Outlet /> */
 }
 .account-section-content {
-  /* Styles for the actual content of each section */
+  /* General styles for content rendered by <Outlet />, can be empty if sub-components style themselves */
 }
-.welcome-section h2 {
+.welcome-section h2 { /* Specific to AccountDashboard example */
   font-size: 1.8rem;
   color: var(--text-color);
   margin-bottom: 15px;
   font-weight: 600;
 }
-.welcome-section p {
+.welcome-section p { /* Specific to AccountDashboard example */
   font-size: 1.05rem;
   color: var(--dark-gray);
   line-height: 1.7;
   margin-bottom: 15px;
 }
-.edit-profile-btn-main {
+.edit-profile-btn-main { /* Specific to AccountDashboard example */
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -177,22 +159,22 @@
 /* Responsive Adjustments */
 @media (max-width: 992px) {
   .account-layout {
-    grid-template-columns: 1fr; /* Stack sidebar and content */
+    grid-template-columns: 1fr; 
   }
   .account-sidebar {
     border-right: none;
     padding-right: 0;
     margin-bottom: 30px;
-    border-bottom: 1px solid var(--medium-gray); /* Separator below sidebar */
+    border-bottom: 1px solid var(--medium-gray); 
     padding-bottom: 30px;
   }
   .account-nav {
-    flex-direction: row; /* Horizontal links on smaller screens */
-    flex-wrap: wrap; /* Allow wrapping */
-    justify-content: center; /* Center the links */
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center; 
   }
   .account-nav-link {
-    width: auto; /* Allow links to size naturally */
+    width: auto; 
   }
 }
 
@@ -204,7 +186,7 @@
   }
   .account-nav-link {
     padding: 10px 12px;
-    font-size: 0.9rem; /* Slightly smaller text */
+    font-size: 0.9rem; 
   }
   .profile-avatar-icon { font-size: 4rem; }
 }
